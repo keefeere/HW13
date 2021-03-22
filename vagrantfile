@@ -1,0 +1,29 @@
+ 
+
+
+Vagrant.configure("2") do |config|
+#Set up machine - javamaven
+  config.vm.define "javamaven" do |javamaven|
+    javamaven.vm.box = 'ubuntu/focal64'
+    javamaven.vm.hostname = "javamaven"
+    javamaven.vm.network :private_network, ip: "192.168.99.10"
+
+    #bridged network for acces from internet on my note, mac for dhcp lease
+    javamaven.vm.network :public_network, :bridge => "Realtek USB GbE Family Controller", :mac=> "0800279CC9D9"
+    javamaven.vm.provider "virtualbox" do |v|
+      v.memory = 4096
+      v.cpus = 2
+      #Bug in WSL+Vagrant. Need this
+      v.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+      v.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+      v.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+    end
+
+    javamaven.vm.provision "docker" 
+    javamaven.vm.provision "shell", path: "start.sh"
+    
+
+  end
+
+
+end
