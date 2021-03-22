@@ -8,4 +8,3 @@
 sh ./insta-nexus-master/go.sh
 
 docker build -t java.builder /vagrant
-# docker run -it --rm --name java.builder -v "$(pwd)/app":/app -w /app java.builder mvn clean install
