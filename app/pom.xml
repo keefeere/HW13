@@ -31,10 +31,10 @@
 
 	<build>
 		<plugins>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin> -->
 			<plugin>
 			<groupId>org.sonatype.plugins</groupId>
 			<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -49,8 +49,8 @@
 				</execution>
 			</executions>
 			<configuration>
-				<serverId>nexus</serverId>
-				<nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+				<serverId> maven-snapshots </serverId>
+				<nexusUrl>http://192.168.99.10:8081/nexus/</nexusUrl>
 				<skipStaging>true</skipStaging>
 			</configuration>
 			</plugin>
@@ -64,20 +64,20 @@
 		
 	</build>
 	
-	
+
 <repositories>
     <repository>
       <id>maven-public</id>
       <url>http://192.168.99.10:8081/repository/maven-public/</url>
     </repository>
-  </repositories>
+  </repositories> 
 <distributionManagement>
     <snapshotRepository>
-      <id>nexus-snapshots</id>
+      <id>maven-snapshots</id>
       <url>http://192.168.99.10:8081/repository/maven-snapshots/</url>
     </snapshotRepository>
     <repository>
-      <id>nexus-releases</id>
+      <id>maven-releases</id>
       <url>http://192.168.99.10:8081/repository/maven-releases/</url>
     </repository>
   </distributionManagement>
