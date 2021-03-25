@@ -1,4 +1,4 @@
-FROM maven:latest as builder
+FROM maven:3.6.3-openjdk-16 as builder
 LABEL Description="Multistage dockerfile" Vendor="keefeere" Version="1.0"
 
 ARG NEXUS_ADMIN_PASS
